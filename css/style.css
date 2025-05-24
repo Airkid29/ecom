@@ -1,0 +1,900 @@
+/* css/style.css - Version Plus Riche et Moderne */
+
+/* Importation de polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+/* Variables CSS */
+:root {
+    --primary-color: #1A237E; /* Bleu nuit */
+    --primary-light: #283593; /* Bleu nuit plus clair */
+    --secondary-color: #42A5F5; /* Bleu ciel */
+    --accent-color: #FF7043; /* Orange corail */
+    --text-dark: #37474F; /* Gris foncé (presque noir) */
+    --text-light: #607D8B; /* Gris bleu pour texte secondaire */
+    --bg-main: #E8EAF6; /* Arrière-plan général (bleu très pâle) */
+    --bg-card: #FFFFFF; /* Arrière-plan des cartes */
+    --border-subtle: #CFD8DC; /* Bordure légère */
+    --shadow-soft: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --success-bg: #E8F5E9;
+    --success-text: #2E7D32;
+    --error-bg: #FFEBEE;
+    --error-text: #C62828;
+}
+
+/* Réinitialisation et styles de base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-main);
+    overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
+}
+
+/* --- Animations de base --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromTop {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Conteneur principal --- */
+main {
+    max-width: 1300px; /* Plus large */
+    margin: 30px auto;
+    padding: 30px 20px;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* --- Header --- */
+header {
+    background: linear-gradient(145deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1000;
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out, color 0.3s ease;
+    display: inline-block;
+}
+
+header h1 a:hover {
+    transform: scale(1.03);
+    color: var(--accent-color);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem; /* Espace plus grand entre les liens */
+    margin-top: 1.5rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.15em;
+    padding: 0.8rem 0;
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent-color);
+    left: 50%;
+    bottom: -5px; /* Ligne plus basse */
+    transform: translateX(-50%);
+    border-radius: 2px;
+    transition: width 0.3s ease-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: var(--bg-main);
+    margin-top: 50px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.15);
+    font-size: 0.95em;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* --- Titres des pages --- */
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 3.2em;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 100px; /* Ligne plus large */
+    height: 5px; /* Plus épaisse */
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+/* --- Messages (erreur/succès) --- */
+p.error-message, p.success-message {
+    padding: 18px 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid transparent;
+    animation: slideInFromTop 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Courbe d'animation plus douce */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+p.error-message {
+    color: var(--error-text);
+    background-color: var(--error-bg);
+    border-color: #EF5350;
+}
+
+p.success-message {
+    color: var(--success-text);
+    background-color: var(--success-bg);
+    border-color: #66BB6A;
+}
+
+/* --- Styles de formulaire --- */
+form {
+    background-color: var(--bg-card);
+    padding: 35px;
+    border-radius: 15px;
+    border: 1px solid var(--border-subtle);
+    max-width: 600px; /* Plus large pour les formulaires */
+    margin: 0 auto 40px auto;
+    box-shadow: 0 6px 20px var(--shadow-soft);
+    position: relative;
+    overflow: hidden; /* Pour les pseudo-éléments si ajoutés */
+}
+
+/* Effet de bordure animée pour les formulaires */
+form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    font-size: 1.05em;
+    background-color: #FAFAFA;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    -webkit-appearance: none; /* Pour un look plus uniforme sur tous les navigateurs */
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(66, 165, 245, 0.25); /* Ombre plus prononcée */
+    background-color: #fff;
+    outline: none;
+}
+
+/* Boutons généraux */
+.button, form input[type="submit"], form button {
+    display: inline-flex; /* Utilisation de flex pour centrer l'icône et le texte */
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Espacement entre icône et texte */
+    background: linear-gradient(45deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.15em;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.button:hover, form input[type="submit"]:hover, form button:hover {
+    background: linear-gradient(45deg, var(--primary-light) 0%, var(--primary-color) 100%);
+    transform: translateY(-5px) scale(1.01); /* Effet plus prononcé */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.button:active, form input[type="submit"]:active, form button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Boutons secondaires (panier, etc.) */
+.button-secondary {
+    background: linear-gradient(45deg, var(--secondary-color) 0%, #64B5F6 100%);
+    margin-left: 20px; /* Plus de marge */
+}
+.button-secondary:hover {
+    background: linear-gradient(45deg, #64B5F6 0%, var(--secondary-color) 100%);
+}
+
+button[name="supprimer_du_panier"] {
+    background: linear-gradient(45deg, var(--error-text) 0%, #EF5350 100%);
+    padding: 12px 20px;
+    font-size: 1em;
+}
+button[name="supprimer_du_panier"]:hover {
+    background: linear-gradient(45deg, #EF5350 0%, var(--error-text) 100%);
+}
+
+button[name="modifier_quantite"] {
+    background: linear-gradient(45deg, var(--text-light) 0%, #90A4AE 100%);
+    padding: 12px 20px;
+    font-size: 1em;
+}
+button[name="modifier_quantite"]:hover {
+    background: linear-gradient(45deg, #90A4AE 0%, var(--text-light) 100%);
+}
+
+
+/* --- Grille de produits --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Cartes un peu plus larges */
+    gap: 40px; /* Espacement généreux */
+    padding: 30px 0;
+}
+
+.product-card {
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px; /* Bords très arrondis */
+    padding: 30px;
+    text-align: center;
+    background-color: var(--bg-card);
+    box-shadow: 0 8px 25px var(--shadow-soft);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transitions plus fluides */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Pour l'effet de bordure survol */
+    position: relative;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    transform: translateY(-100%); /* Commence hors de vue */
+    transition: transform 0.4s ease-out;
+}
+
+.product-card:hover::before {
+    transform: translateY(0); /* Glisse vers le bas au survol */
+}
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: 0 15px 40px var(--shadow-medium);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 250px; /* Hauteur plus grande */
+    object-fit: contain;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border: 1px solid #F5F5F5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.product-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 15px 0;
+    color: var(--primary-color);
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.product-card .price {
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 2em; /* Prix plus grand */
+    margin-bottom: 15px;
+    display: block;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.product-card .stock {
+    font-size: 0.95em;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.product-card p {
+    font-size: 1em;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    min-height: 70px; /* Plus d'espace */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card form {
+    margin-top: auto;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex; /* Alignement du formulaire */
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card form label {
+    margin-right: 10px;
+    display: inline-block;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.product-card form input[type="number"] {
+    width: 100px; /* Plus large pour la quantité */
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+/* --- Styles des tables (panier, commandes) --- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 30px;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px var(--shadow-soft);
+}
+
+table th,
+table td {
+    padding: 18px 25px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+table th {
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1em;
+    border-top: none;
+    position: sticky; /* En-tête de table fixe si beaucoup de lignes */
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+table tr:first-child th:first-child { border-top-left-radius: 15px; }
+table tr:first-child th:last-child { border-top-right-radius: 15px; }
+
+table tr:nth-child(even) {
+    background-color: #F8F9FA;
+}
+
+table tr:hover {
+    background-color: #E3F2FD; /* Bleu clair au survol */
+}
+
+table tfoot td {
+    font-weight: 700;
+    background-color: var(--bg-main);
+    padding: 20px 25px;
+    font-size: 1.2em;
+    border-bottom: none;
+    color: var(--primary-color);
+}
+
+table tr:last-child td:first-child { border-bottom-left-radius: 15px; }
+table tr:last-child td:last-child { border-bottom-right-radius: 15px; }
+
+
+/* --- Conteneur de commande individuelle dans mes_commandes.php --- */
+.commande-item {
+    border: 1px solid var(--border-subtle);
+    border-radius: 15px;
+    margin-bottom: 35px;
+    padding: 30px;
+    background-color: var(--bg-card);
+    box-shadow: 0 6px 20px var(--shadow-soft);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.commande-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+.commande-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.commande-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.commande-item table {
+    margin-top: 20px;
+    box-shadow: none; /* Pas d'ombre supplémentaire pour les tables internes */
+}
+
+/* Pour centrer le texte "Panier vide" etc. */
+p[style*="text-align: center"] {
+    font-size: 1.1em;
+    color: var(--text-light);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+p[style*="text-align: center"] a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+p[style*="text-align: center"] a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* --- Responsive Design --- */
+
+@media (max-width: 1024px) {
+    main {
+        margin: 20px auto;
+        padding: 25px 15px;
+    }
+    .product-grid {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 1rem;
+    }
+    nav ul li {
+        margin: 0;
+    }
+    nav ul li a {
+        font-size: 1em;
+        padding: 0.5rem 0;
+    }
+
+    main {
+        margin: 15px auto;
+        padding: 20px 15px;
+        border-radius: 10px;
+    }
+    h2 {
+        font-size: 2.5em;
+        margin-bottom: 35px;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+    .product-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    .product-card img {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    .product-card h3 {
+        font-size: 1.8em;
+    }
+    .product-card .price {
+        font-size: 1.8em;
+    }
+    form {
+        padding: 25px;
+        border-radius: 12px;
+    }
+    .button, form input[type="submit"], form button {
+        padding: 12px 20px;
+        font-size: 1.05em;
+    }
+    table th, table td {
+        padding: 15px 15px;
+        font-size: 0.9em;
+    }
+    table tfoot td {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 576px) {
+    header h1 {
+        font-size: 2em;
+    }
+    header h1 a:hover {
+        transform: none; /* Désactive le scale sur petits écrans */
+    }
+    nav ul {
+        gap: 10px;
+    }
+    nav ul li a {
+        font-size: 0.95em;
+    }
+    main {
+        padding: 15px 10px;
+        margin: 10px auto;
+    }
+    h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; /* Une seule colonne */
+        gap: 20px;
+    }
+    .product-card {
+        padding: 18px;
+    }
+    .product-card img {
+        height: 180px;
+    }
+    .product-card form {
+        flex-direction: column;
+        align-items: stretch; /* Les éléments prennent toute la largeur */
+    }
+    .product-card form label {
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    .product-card form input[type="number"] {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .button, form input[type="submit"], form button {
+        width: 100%; /* Boutons en pleine largeur */
+        margin-left: 0;
+        margin-top: 10px; /* Espace entre les boutons empilés */
+    }
+    .button-secondary {
+        margin-left: 0;
+    }
+
+    table th, table td {
+        padding: 10px 8px;
+        font-size: 0.85em;
+    }
+    /* Cache les colonnes moins importantes sur mobile */
+    table th:nth-child(2), table td:nth-child(2) { /* Prix unitaire */
+        display: none;
+    }
+    .commande-item h3 {
+        font-size: 1.8em;
+    }
+    .commande-item h4 {
+        font-size: 1.2em;
+    }
+}
+
+/* Styles spécifiques pour le bouton Imprimer */
+.button-print {
+    background: linear-gradient(45deg, #FF7043 0%, #FF9800 100%); /* Orange */
+    box-shadow: 0 4px 10px rgba(255,112,67,0.3);
+}
+
+.button-print:hover {
+    background: linear-gradient(45deg, #FF9800 0%, #FF7043 100%);
+    box-shadow: 0 6px 15px rgba(255,112,67,0.4);
+}
+
+.print-link-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Ajustement pour les boutons de navigation (sinon ils sont trop grands) */
+nav ul li a .fas {
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+/* Style pour les icônes à l'intérieur des boutons généraux */
+.button .fas, form input[type="submit"] .fas, form button .fas {
+    margin-right: 8px; /* Espacement entre icône et texte */
+}
+
+/* --- Index.php - Section Hero --- */
+.hero-section {
+    background: url('https://via.placeholder.com/1500x500/1A237E/FFFFFF?text=Bienvenue+sur+Mon+E-commerce') no-repeat center center/cover; /* Image de fond */
+    min-height: 400px; /* Hauteur de la section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 35, 126, 0.6); /* Surcouche sombre */
+    border-radius: 15px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.hero-content h2 {
+    color: #fff;
+    font-size: 3.8em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    padding-bottom: 0; /* Pas de ligne en dessous pour ce h2 */
+}
+.hero-content h2::after {
+    display: none; /* Cache la ligne pour ce h2 */
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.hero-content .button {
+    background: linear-gradient(45deg, var(--accent-color) 0%, #FF9800 100%);
+    font-size: 1.3em;
+    padding: 15px 35px;
+    border-radius: 50px; /* Bouton pill */
+    box-shadow: 0 5px 15px rgba(255,112,67,0.3);
+}
+
+.hero-content .button:hover {
+    background: linear-gradient(45deg, #FF9800 0%, var(--accent-color) 100%);
+    box-shadow: 0 8px 25px rgba(255,112,67,0.4);
+    transform: translateY(-7px) scale(1.02);
+}
+
+/* Styles pour les produits phares sur la page d'accueil */
+.featured-products {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.featured-products .product-grid {
+    padding: 0; /* Supprime le padding de la grille pour cette section */
+}
+
+.featured-products .product-card .button-small {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--secondary-color) 0%, #64B5F6 100%);
+    box-shadow: none; /* Pas d'ombre sur ces petits boutons */
+    transform: none; /* Pas de transform sur ces petits boutons */
+}
+.featured-products .product-card .button-small:hover {
+    background: linear-gradient(45deg, #64B5F6 0%, var(--secondary-color) 100%);
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- Section d'information --- */
+.info-section {
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.info-item {
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.info-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.info-item .fas {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 3.5em;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    padding: 20px;
+    display: inline-block;
+    background-color: #FFF3E0; /* Jaune très clair */
+}
+
+.info-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.info-item p {
+    color: var(--text-light);
+    font-size: 1em;
+}
+
+/* Responsive pour les nouvelles sections */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+        margin-bottom: 30px;
+    }
+    .hero-content h2 {
+        font-size: 2.8em;
+    }
+    .hero-content p {
+        font-size: 1.2em;
+    }
+    .hero-content .button {
+        font-size: 1.1em;
+        padding: 12px 25px;
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .info-item {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 250px;
+    }
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+    .hero-content p {
+        font-size: 1em;
+    }
+    .hero-content .button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
